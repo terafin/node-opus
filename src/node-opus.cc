@@ -69,7 +69,7 @@ class OpusEncoder : public ObjectWrap {
 			encoder( NULL ), decoder( NULL ),
 			rate( rate ), channels( channels ), application( application ) {
 
-			outPcm = new opus_int16[ channels * MAX_FRAME_SIZE ];
+			outPcm = new float[ channels * MAX_FRAME_SIZE ];
 		}
 
 		~OpusEncoder() {
