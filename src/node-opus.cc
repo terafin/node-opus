@@ -101,7 +101,7 @@ class OpusEncoder : public ObjectWrap {
 
 			// Read the PCM data.
 			char* pcmData = Buffer::Data(pcmBuffer);
-			opus_int16* pcm = reinterpret_cast<opus_int16*>( pcmData );
+			const float* pcm = reinterpret_cast<const float*>( pcmData );
 			int frameSize = Buffer::Length( pcmBuffer ) / 2 / self->channels;
 
 			// Encode the samples.
