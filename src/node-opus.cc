@@ -105,7 +105,7 @@ class OpusEncoder : public ObjectWrap {
 			int frameSize = Buffer::Length( pcmBuffer ) / 2 / self->channels;
 
 			// Encode the samples.
-			int compressedLength = opus_encode( self->encoder, pcm, frameSize, &(self->outOpus[0]), maxPacketSize );
+			int compressedLength = opus_encode_float( self->encoder, pcm, frameSize, &(self->outOpus[0]), maxPacketSize );
 
 			// Create a new result buffer.
 			Nan::MaybeLocal<Object> actualBuffer = Nan::CopyBuffer(reinterpret_cast<char*>(self->outOpus), compressedLength );
@@ -128,7 +128,7 @@ class OpusEncoder : public ObjectWrap {
 			}
 
 			// Encode the samples.
-			int decodedSamples = opus_decode(
+			int decodedSamples = opus_decode_float(
 					self->decoder,
 					compressedData,
 					compressedDataLength,

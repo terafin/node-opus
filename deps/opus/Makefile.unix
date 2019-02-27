@@ -48,12 +48,7 @@ WARNINGS = -Wall -W -Wstrict-prototypes -Wextra -Wcast-align -Wnested-externs -W
 CFLAGS  += -O2 -g $(WARNINGS) -DOPUS_BUILD
 CINCLUDES = include silk celt
 
-ifdef FIXED_POINT
-CFLAGS += -DFIXED_POINT=1 -DDISABLE_FLOAT_API
-CINCLUDES += silk/fixed
-else
 CINCLUDES += silk/float
-endif
 
 
 LIBS = m
