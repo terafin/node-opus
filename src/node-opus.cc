@@ -48,7 +48,7 @@ class OpusEncoder : public ObjectWrap {
 		int application;
 
 		unsigned char outOpus[ MAX_PACKET_SIZE ];
-		opus_int16* outPcm;
+		const float* outPcm;
 
 	protected:
 		int EnsureEncoder() {
