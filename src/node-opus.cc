@@ -16,6 +16,10 @@ using namespace v8;
 #define MAX_FRAME_SIZE 6*960
 #define MAX_PACKET_SIZE (3*1276)
 #define BITRATE 64000
+#define OUTPUT_SAMPLE_RATE 48000
+#define OUTPUT_CHANNELS 2
+#define OUTPUT_MAX_PACKET_SIZE 256
+#define OUTPUT_FRAMES_PER_PACKET (OUTPUT_SAMPLE_RATE / 1000 * OPUS_PACKET_TIME)
 
 const char* getDecodeError( int decodedSamples ) {
 	switch( decodedSamples ) {
@@ -135,7 +139,7 @@ class OpusEncoder : public ObjectWrap {
 					&(self->outPcm[0]),
 				   	MAX_FRAME_SIZE, /* decode_fex */ 0 );
 
-			if( decodedSamples < 0 ) {
+			if( decodedSamples != OUTPUT_FRAMES_PER_PACKET ) {
 				return Nan::ThrowTypeError( getDecodeError( decodedSamples ) );
 			}
 
